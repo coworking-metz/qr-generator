@@ -28,8 +28,7 @@ foreach ($options as $key => $val) {
     }
 }
 
-$qrCodeImage = generateQrCode($url, $options);
-echo '<img src="' . $qrCodeImage . '" alt="QR Code" />';
+generateQrCode($url, $options);
 
 /**
  * Generates a QR code as a PNG image with a transparent logo.
@@ -74,11 +73,11 @@ function generateQrCode($text, $options = [])
         $QR_height = imagesy($qrCode);
         $logo_width = imagesx($logo);
         $logo_height = imagesy($logo);
-        $logo_qr_width = $QR_width / 5;
-        $scale = $logo_width / $logo_height;
-        $logo_qr_height = $logo_qr_width / $scale;
-        $from_width = ($QR_width - $logo_qr_width) / 2;
-        $from_height = ($QR_height - $logo_qr_height) / 2;
+        $logo_qr_width = intval($QR_width / 5);
+        $scale = intval($logo_width / $logo_height);
+        $logo_qr_height = intval($logo_qr_width / $scale);
+        $from_width = intval(($QR_width - $logo_qr_width) / 2);
+        $from_height = intval(($QR_height - $logo_qr_height) / 2);
 
         imagecopyresampled($qrCode, $logo, $from_width, $from_height, 0, 0, $logo_qr_width, $logo_qr_height, $logo_width, $logo_height);
 
