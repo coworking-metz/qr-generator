@@ -81,7 +81,6 @@ function generateQrCode($text, $options = [])
 
         imagecopyresampled($qrCode, $logo, $from_width, $from_height, 0, 0, $logo_qr_width, $logo_qr_height, $logo_width, $logo_height);
 
-        // Final output
         ob_start();
         imagepng($qrCode);
         $imageString = ob_get_contents();
